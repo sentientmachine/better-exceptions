@@ -87,5 +87,11 @@ Where I found this trick: https://nedbatchelder.com/blog/201001/running_code_at_
 
 - [paradoxxxzero/better-exceptions-hook](https://github.com/paradoxxxzero/better-exceptions-hook) - removes the need to `import better_exceptions` by adding a startup hook
 
+The package installs a pth file in your site_packages directory. At startup python loads these files that normally adds directory to sys.path. https://docs.python.org/3.6/library/site.html
+
+The hack here is to start a line with import which allows code execution.
+
+More info: http://www.psf.upfronthosting.co.za/issue24534
+
 # License
 Copyright &copy; 2017, Josh Junon. Licensed under the [MIT license](LICENSE.txt).
