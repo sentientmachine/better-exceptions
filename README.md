@@ -37,15 +37,15 @@ See: https://stackoverflow.com/a/46494872/445131
 How to execute the python file defined in $PYTHONSTARTUP when you execute a file like `python foobar.py`
 ------------------------------------------------------------------------
 
-**Run this command to find out where your OS has defined `USER_SITE`:**
+Run this command to find out where your OS has defined `USER_SITE`:
 
     $ python -c "import site; site._script()" 
 
-**Mine says:**
+Mine says:
 
     USER_SITE: '/home/el/.local/lib64/python2.7/site-packages'
 
-**Create a new file there called `/home/el/.local/lib64/python2.7/site-packages/usercustomize.py`, put this code in there:**
+Create a new file there called `/home/el/.local/lib64/python2.7/site-packages/usercustomize.py`, put this code in there:
 
     try:
         import your_things
@@ -57,22 +57,22 @@ How to execute the python file defined in $PYTHONSTARTUP when you execute a file
         print("Either exit here, or perform remedial actions")
         exit()
 
-**Close the terminal and reopen it to clear out any shenanigans.**
+Close the terminal and reopen it to clear out any shenanigans.
 
-**Make a new file `python foobar.py` anywhere on the filesystem, put this code in there:**
+Make a new file `python foobar.py` anywhere on the filesystem, put this code in there:
 
     #Note there is no your_things module imported here.
     #Print your_things version:
     print(your_things.__version__)
 
 
-**Run it:** 
+Run it:
 
     python foobar.py 
     ROCKETMAN!
     '1.12.0'
 
-**What just happened.**
+What just happened.
 
 You used the python sitewide specific python configuration hook and imported libraries in the `usercustomize.py` file which ran before foobar.py.
 
@@ -82,7 +82,8 @@ Where I found this trick: https://nedbatchelder.com/blog/201001/running_code_at_
 
 
 
-## hold-your-hand setup.py to do the wrapper (not as good as above):
+
+## hold-your-hand setup.py to do the wrapper stuff for you (not as good as above):
 
 - [paradoxxxzero/better-exceptions-hook](https://github.com/paradoxxxzero/better-exceptions-hook) - removes the need to `import better_exceptions` by adding a startup hook
 
