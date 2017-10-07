@@ -189,8 +189,18 @@ def excepthook(exc, value, tb):
         value.args = (colored_source,)
     title = traceback.format_exception_only(exc, value)
 
-    full_trace = u'Traceback (most recent call last):\n{}{}'.format(formatted, title[0].strip())
+    #full_trace = u'Traceback (most recent call last):\n{}{}'.format(formatted, title[0].strip())
+    
+    #Bug fix from #35 upstream, when indentation is wrong, better_exceptions dies and gobbles what python has to say, this fixes it.
+    #$ python c.py 
+    #Traceback (most recent call last):
+      #File "c.py", line 3
+        #print("foobar")      #intentional faulty indentation here.
+        #^
+    #IndentationError: unexpected indent
 
+    full_trace = u'Traceback (most recent call last):\n{}{}\n'.format(formatted, ''.join(title))
+    
     print(full_trace, file=sys.stderr)
 
 
