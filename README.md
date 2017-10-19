@@ -2,7 +2,12 @@
 
 Pretty and more helpful exceptions in Python, automatically.
 
-![Example screenshot of exceptions](screenshot.png)
+![Just better_exceptions](screenshot.png)
+
+
+![Hybrid better_exceptions and pygments](https://i.imgur.com/au4LEJV.png)
+
+
 
 ## Usage Manually
 
