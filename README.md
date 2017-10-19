@@ -7,7 +7,7 @@ Pretty and more helpful exceptions in Python, automatically.
 
 ![Hybrid better_exceptions and pygments](https://i.imgur.com/au4LEJV.png)
 
-
+TODO: skorokithakis has a great tool called tbvaccine that highlights only those lines that are relevant to the file you are currently editing.  See https://github.com/skorokithakis/tbvaccine/
 
 ## Usage Manually
 
