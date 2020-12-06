@@ -1,102 +1,28 @@
-# better-exceptions
+# better-exceptions, customized for Gentoo
 
-Pretty and more helpful exceptions in Python, automatically.
+## Jist install
+
+    root> emerge -avNu python-pip
+    root> emerge -avNu pygments
+    pip install --user better-exceptions
+    #Pip puts the stuffs under ~/.local/lib/python3.7/site-packages/better_exceptions
+
+    #put this in your ~/.bashrc or just-in-time before the invocation of the python3 interpreter:
+    export BETTER_EXCEPTIONS=1
+
+    #I put something like this in my .bashrc, that way I can flip it on or off as needed
+    alias python37_with_better_exceptions="BETTER_EXCEPTIONS=1 python3 "
 
 ![Just better_exceptions](screenshot.png)
 
-
 ![Hybrid better_exceptions and pygments](https://i.imgur.com/au4LEJV.png)
 
-TODO: skorokithakis has a great tool called tbvaccine that highlights only those lines that are relevant to the file you are currently editing.  See https://github.com/skorokithakis/tbvaccine/
+## Demo
 
-## Usage Manually
-
-Install `better_exceptions` via pip:
-
-```console
-$ pip install better_exceptions
-```
-
-And import it somewhere:
-
-```python
-import better_exceptions
-```
-
-You're done
-
-# 
-
-### Custom Parameters:
-
-If you want to allow the entirety of values to be outputted instead of being truncated to a certain amount of characters:
-
-```python
-better_exceptions.MAX_LENGTH = None
-```
-
-## Python startup hook so you don't need to `import better_exceptions`
-
-See: https://stackoverflow.com/a/46494872/445131
-
-How to execute the python file defined in $PYTHONSTARTUP when you execute a file like `python foobar.py`
-------------------------------------------------------------------------
-
-Run this command to find out where your OS has defined `USER_SITE`:
-
-    $ python -c "import site; site._script()" 
-
-Mine says:
-
-    USER_SITE: '/home/el/.local/lib64/python2.7/site-packages'
-
-Create a new file there called `/home/el/.local/lib64/python2.7/site-packages/usercustomize.py`, put this code in there:
-
-    try:
-        import your_things
-        import readline
-        print("ROCKETMAN!")
-    
-    except ImportError:
-        print("Can't load your things")
-        print("Either exit here, or perform remedial actions")
-        exit()
-
-Close the terminal and reopen it to clear out any shenanigans.
-
-Make a new file `python foobar.py` anywhere on the filesystem, put this code in there:
-
-    #Note there is no your_things module imported here.
-    #Print your_things version:
-    print(your_things.__version__)
-
-
-Run it:
-
-    python foobar.py 
-    ROCKETMAN!
-    '1.12.0'
-
-What just happened.
-
-You used the python sitewide specific python configuration hook and imported libraries in the `usercustomize.py` file which ran before foobar.py.
-
-Documentation: https://docs.python.org/2/library/site.html
-
-Where I found this trick: https://nedbatchelder.com/blog/201001/running_code_at_python_startup.html
+![demo](demogif.gif)
 
 
 
-
-## hold-your-hand setup.py to do the wrapper stuff for you (not as good as above):
-
-- [paradoxxxzero/better-exceptions-hook](https://github.com/paradoxxxzero/better-exceptions-hook) - removes the need to `import better_exceptions` by adding a startup hook
-
-The package installs a pth file in your site_packages directory. At startup python loads these files that normally adds directory to sys.path. https://docs.python.org/3.6/library/site.html
-
-The hack here is to start a line with import which allows code execution.
-
-More info: http://www.psf.upfronthosting.co.za/issue24534
 
 # License
 Copyright &copy; 2017, Josh Junon. Licensed under the [MIT license](LICENSE.txt).
