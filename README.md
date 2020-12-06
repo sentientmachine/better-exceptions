@@ -1,5 +1,7 @@
 # better-exceptions, customized for Gentoo
 
+Parent: https://github.com/Qix-/better-exceptions
+
 ## Jist install
 
     root> emerge -avNu python-pip
